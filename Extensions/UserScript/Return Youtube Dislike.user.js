@@ -408,7 +408,7 @@ function setState() {
   fetch(`https://returnyoutubedislikeapi.com/votes?videoId=${getVideoId()}`).then((response) => {
     response.json().then((json) => {
       if (json && !("traceId" in response) && !statsSet) {
-        const { dislikes, likes } = json;
+        const { rawDislikes, rawLikes } = json;
         cLog(`Received count: ${dislikes}`);
         likesvalue = likes;
         dislikesvalue = dislikes;
