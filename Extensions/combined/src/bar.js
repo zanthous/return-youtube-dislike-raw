@@ -9,7 +9,12 @@ import {
 } from "./state";
 import { cLog, getColorFromTheme, isInViewport } from "./utils";
 
-function createRateBar(likes, dislikes) {
+function createRateBar(likes, dislikes, rawLikes) {
+    if ( isNaN( rawLikes ) )
+        rawLikes = 0;
+    console.log( likes );
+    console.log( dislikes );
+    console.log( rawLikes );
   let rateBar = document.getElementById("ryd-bar-container");
   if (!isLikesDisabled()) {
     // sometimes rate bar is hidden
@@ -34,7 +39,7 @@ function createRateBar(likes, dislikes) {
       var tooltipInnerHTML;
       switch (extConfig.tooltipPercentageMode) {
         case "dash_dislike":
-          tooltipInnerHTML = `${likes.toLocaleString()}&nbsp;/&nbsp;${dislikes.toLocaleString()}&nbsp;&nbsp;-&nbsp;&nbsp;${dislikePercentage}%`;
+              tooltipInnerHTML = `yt:&nbsp;${likes.toLocaleString()}&nbsp;|&nbsp;ext:&nbsp;${rawLikes.toLocaleString()}&nbsp;/&nbsp;${dislikes.toLocaleString()}&nbsp;&nbsp;-&nbsp;&nbsp;${dislikePercentage}%`;
           break;
         case "both":
           tooltipInnerHTML = `${likePercentage}%&nbsp;/&nbsp;${dislikePercentage}%`;
@@ -46,10 +51,10 @@ function createRateBar(likes, dislikes) {
           tooltipInnerHTML = `${dislikePercentage}%`;
           break;
         default: // dash_like
-          tooltipInnerHTML = `${likes.toLocaleString()}&nbsp;/&nbsp;${dislikes.toLocaleString()}&nbsp;&nbsp;-&nbsp;&nbsp;${likePercentage}%`;
+              tooltipInnerHTML = `yt:&nbsp;${likes.toLocaleString()}&nbsp;|&nbsp;ext:&nbsp;${rawLikes.toLocaleString()}&nbsp;&nbsp;-&nbsp;&nbsp;${likePercentage}%`;
       }
     } else {
-      tooltipInnerHTML = `${likes.toLocaleString()}&nbsp;/&nbsp;${dislikes.toLocaleString()}`;
+        tooltipInnerHTML = `yt:&nbsp;${likes.toLocaleString()}&nbsp;|&nbsp;ext:&nbsp;${rawLikes.toLocaleString()}&nbsp;/&nbsp;${dislikes.toLocaleString()}`;
     }
 
     if (!isShorts()) {
@@ -120,7 +125,7 @@ function createRateBar(likes, dislikes) {
     cLog("removing bar");
     if (rateBar) {
       rateBar.parentNode.removeChild(rateBar);
-    }
+    }   
   }
 }
 

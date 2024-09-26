@@ -409,6 +409,8 @@ function setState() {
     response.json().then((json) => {
       if (json && !("traceId" in response) && !statsSet) {
         const { rawDislikes, rawLikes } = json;
+        let dislikes = rawDislikes;
+        let likes = rawLikes;
         cLog(`Received count: ${dislikes}`);
         likesvalue = likes;
         dislikesvalue = dislikes;

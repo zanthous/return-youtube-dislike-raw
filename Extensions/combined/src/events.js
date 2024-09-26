@@ -35,7 +35,7 @@ function sendVote(vote) {
 
 function updateDOMDislikes() {
   setDislikes(numberFormat(storedData.dislikes));
-  createRateBar(storedData.likes, storedData.dislikes);
+  createRateBar(storedData.likes, storedData.dislikes, storedData.rawLikes);
 }
 
 function likeClicked() {
