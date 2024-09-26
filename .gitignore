@@ -35,6 +35,6 @@ node_modules
 Extensions/combined/bundled-content-script.js
 
 # Dist Files
-Extensions/combined/dist/*
+# Extensions/combined/dist/*
 package-lock.json
 Website/package-lock.json
